@@ -1,6 +1,5 @@
 package com.mihir.cryptocurrency.presentation.coin_detail
 
-import androidx.compose.material.contentColorFor
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
@@ -10,7 +9,6 @@ import com.mihir.cryptocurrency.common.Constants.PARAM_COIN_ID
 import com.mihir.cryptocurrency.common.Resource
 import com.mihir.cryptocurrency.domain.use_cases.get_coin.GetCoinsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.forEach
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -28,7 +26,7 @@ private val savedStateHandle:SavedStateHandle):ViewModel() {
     }
 
     private fun getCoins(coinId:String){
-        getCoinsUseCase(coinId ).onEach { result ->
+        getCoinsUseCase(coinId).onEach { result ->
             when(result){
                 is Resource.Success ->{
                     _state.value = CoinDetailState(coin = result.data)
